@@ -1,0 +1,6 @@
+*_log.txt
+credentials.json
+token.json
+__pycache__/
+images/
+.venv/

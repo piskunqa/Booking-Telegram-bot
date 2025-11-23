@@ -1,0 +1,41 @@
+version: "3.9"
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: booking_db
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+  bot:
+    build: .
+    container_name: booking_bot
+    restart: always
+    depends_on:
+      - db
+    env_file:
+      - .env
+    command: python main.py
+    volumes:
+      - ./images:/app/images
+
+  admin:
+    build: .
+    container_name: flask_admin
+    env_file: .env
+    command: gunicorn -w 4 -b 0.0.0.0:8000 admin:app
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./images:/app/images
+    depends_on:
+      - db
+    restart: unless-stopped
+
+volumes:
+  db_data:
