@@ -49,3 +49,64 @@ MYSQL_USER=root
 MYSQL_PASSWORD=secret
 MYSQL_ROOT_PASSWORD=secret2
 MYSQL_PORT=3306
+```
+
+
+## Installation and Setup
+
+**Clone the repository**:
+- git clone <repo-url>
+- cd <repo-directory>
+
+**Build Docker containers:**
+- docker-compose build
+
+**Start containers:**
+- docker-compose up -d
+
+This will start three containers:
+
+bot: Telegram bot service
+
+admin: Flask admin panel accessible at http://localhost:8000
+
+mysql: MySQL database
+
+Docker Volumes
+
+./images:/app/images - stores uploaded images persistently.
+
+MySQL data is stored in mysql-data volume to persist database records.
+
+Usage
+
+Bot: Start the bot via Telegram /start. Browse resources, pick dates, and pay.
+
+Admin panel: Access Flask admin at http://localhost:8000 to manage resources and images.
+
+Cancel Booking: Users can cancel upcoming bookings; managers will be notified.
+
+Scripts & Utilities
+
+Auto-cleanup: Removes incomplete bookings older than 24 hours.
+
+Save/load state: Bot maintains user_booking_state between restarts.
+
+Payments: handle_pre_checkout_query ensures no double-booking during payment.
+
+Restart: /restart command saves the bot state and reloads the bot (admin only).
+
+Development
+
+Python dependencies are defined in requirements.txt.
+
+Reload bot code with:
+
+- docker-compose down
+- docker-compose up -d --build
+
+Save and restore user booking state via /restart command in Telegram (admin only).
+
+Contributing
+
+Feel free to fork the project, create issues, or submit pull requests. Make sure to test with a local Telegram bot and MySQL setup.
