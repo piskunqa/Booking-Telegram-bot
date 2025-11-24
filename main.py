@@ -18,16 +18,15 @@ from config import texts
 from models import Resource, Images, Booking
 from utils import build_resources_keyboard, get_day_status, get_booked_ranges_for_resource
 
-# Bot configurations
-bot = telebot.TeleBot(BOT_TOKEN)
-
-# Bot commands
+# bot configurations
+bot = telebot.TeleBot(BOT_TOKEN, threaded=True, num_threads=15, skip_pending=True)
 bot.set_my_commands([
     telebot.types.BotCommand("/start", texts.start_command),
     telebot.types.BotCommand("/bookings", texts.my_bookings_command),
     telebot.types.BotCommand("/help", texts.talk_manager_command),
 ])
 
+# variables
 user_booking_state, help_waiting_for_input, help_cancel_messages = {}, set(), {}
 STATE_FILE = join(dirname(__file__), STATE_FILE_NAME)
 
