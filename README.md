@@ -10,7 +10,7 @@ This repository contains a Telegram bot for booking resources (rooms, apartments
 - **Pagination**: Resource list is paginated (10 items per page) with next/previous buttons.
 - **Booking**: Users can select check-in and check-out dates via a calendar UI.
 - **Calendar restrictions**: Shows already booked dates; highlights user's own bookings in green, others in red.
-- **Payments**: Integrated with Telegram `send_invoice` for payments in local currency (UAH).
+- **Payments**: Integrated with Telegram `send_invoice` for payments in local currency.
 - **Booking confirmation**: Only confirmed after successful payment.
 - **Cancellation**: Users can cancel upcoming bookings; managers are notified.
 - **Help system**: Users can send messages to managers; managers can reply via bot.
@@ -19,6 +19,10 @@ This repository contains a Telegram bot for booking resources (rooms, apartments
 - **Auto-cleanup**: Old incomplete bookings are removed automatically every hour.
 
 ---
+
+
+https://github.com/user-attachments/assets/e91f2ce6-2a6c-4b77-a6e4-3c14365e4490
+
 
 ## Requirements
 
@@ -106,7 +110,3 @@ Reload bot code with:
 - docker-compose up -d --build
 
 Save and restore user booking state via /restart command in Telegram (admin only).
-
-Contributing
-
-Feel free to fork the project, create issues, or submit pull requests. Make sure to test with a local Telegram bot and MySQL setup.
